@@ -1,0 +1,43 @@
+# -------------
+# Queries
+
+type Query {
+  user: User!
+  getBikeStatus(id: String): BikeStatusType!
+}
+
+# -------------
+# Mutations
+
+type Mutation {
+  authGoogle(accessToken: String!): User!
+}
+
+# -------------
+# Rest of stuff (types)
+
+type User {
+  token: String
+  name: String!
+}
+
+type BikeStatusType {
+  last_updated: Date!
+  ttl: Int!
+  data: BikeData!
+}
+
+type BikeData {
+  bikes: [VehicleStatus!]!
+}
+
+type VehicleStatus {
+  bike_id: String!
+  lat: Float!
+  lon: Float!
+  is_reserved: Int!
+  is_disabled: Int!
+  vehicle_type: String!
+}
+
+scalar Date
